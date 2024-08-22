@@ -17,7 +17,9 @@ struct WineCard: View {
     var isVertical: Bool = false
     var horizontalImageWidth: CGFloat? = 50
     var verticalCardWidth: CGFloat? = 175
+    var verticalCardHeight: CGFloat? = 300
     var verticalImageHeight: CGFloat? = 200
+    var includeText: Bool? = true
     
     var body: some View {
         Group {
@@ -47,31 +49,33 @@ struct WineCard: View {
                     .shadow(radius: 2)
             }
                         
-            VStack(alignment: .leading, spacing: 5) {
-                Text(winery)
-                    .font(.system(size: 20, weight: .bold))
-                    .lineLimit(1)
-                    .truncationMode(.tail)
-                Text(wine)
-                    .font(.system(size: 16))
-                    .lineLimit(3)
-                    .multilineTextAlignment(.leading)
-                    .truncationMode(.tail)
-                
-                if case .collection(_) = bottle {
-                    Spacer()
-                    Text(wineType)
-                        .foregroundColor(.white)
-                        .font(.system(size: 14))
+            if includeText! {
+                VStack(alignment: .leading, spacing: 5) {
+                    Text(winery)
+                        .font(.system(size: 20, weight: .bold))
                         .lineLimit(1)
                         .truncationMode(.tail)
-                        .padding(.vertical, 4)
-                        .padding(.horizontal, 8)
-                        .background(
-                            RoundedRectangle(cornerRadius: 10)
-                                .fill(wineTypeColor)
-                                .shadow(radius: 0.5)
-                        )
+                    Text(wine)
+                        .font(.system(size: 16))
+                        .lineLimit(3)
+                        .multilineTextAlignment(.leading)
+                        .truncationMode(.tail)
+                    
+                    if case .collection(_) = bottle {
+                        Spacer()
+                        Text(wineType)
+                            .foregroundColor(.white)
+                            .font(.system(size: 14))
+                            .lineLimit(1)
+                            .truncationMode(.tail)
+                            .padding(.vertical, 4)
+                            .padding(.horizontal, 8)
+                            .background(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(wineTypeColor)
+                                    .shadow(radius: 0.5)
+                            )
+                    }
                 }
             }
         }
@@ -110,37 +114,39 @@ struct WineCard: View {
                     .shadow(radius: 2)
             }
             .frame(maxWidth: .infinity, alignment: .center)
-
-            VStack(alignment: .leading) {
-                Text(winery)
-                    .font(.system(size: 20, weight: .semibold))
-                    .lineLimit(3)
-                    .truncationMode(.tail)
-                Text(wine)
-                    .font(.system(size: 16))
-                    .lineLimit(2)
-                    .multilineTextAlignment(.leading)
-                    .truncationMode(.tail)
-                
-                if case .collection(_) = bottle {
-                    Text(wineType)
-                        .foregroundColor(.white)
-                        .font(.system(size: 14))
-                        .lineLimit(1)
+            
+            if includeText! {
+                VStack(alignment: .leading) {
+                    Text(winery)
+                        .font(.system(size: 20, weight: .semibold))
+                        .lineLimit(3)
                         .truncationMode(.tail)
-                        .padding(.vertical, 4)
-                        .padding(.horizontal, 8)
-                        .background(
-                            RoundedRectangle(cornerRadius: 10)
-                                .fill(wineTypeColor)
-                                .shadow(radius: 0.5)
-                        )
+                    Text(wine)
+                        .font(.system(size: 16))
+                        .lineLimit(2)
+                        .multilineTextAlignment(.leading)
+                        .truncationMode(.tail)
+                    
+                    if case .collection(_) = bottle {
+                        Text(wineType)
+                            .foregroundColor(.white)
+                            .font(.system(size: 14))
+                            .lineLimit(1)
+                            .truncationMode(.tail)
+                            .padding(.vertical, 4)
+                            .padding(.horizontal, 8)
+                            .background(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(wineTypeColor)
+                                    .shadow(radius: 0.5)
+                            )
+                    }
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
         }
         .padding()
-        .frame(width: verticalCardWidth, height: 300)
+        .frame(width: verticalCardWidth, height: verticalCardHeight)
         .background(
             RoundedRectangle(cornerRadius: 10)
                 .fill(wineTypeColor.opacity(0.1))

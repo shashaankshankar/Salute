@@ -14,7 +14,7 @@ struct TabBarView: View {
         TabView {
             FeedView()
                 .tabItem {
-                    Label("Feed", systemImage: "rectangle.stack.fill")
+                    Label("Memories", systemImage: "rectangle.stack.fill")
                 }
             
             CollectionView()

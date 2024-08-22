@@ -20,10 +20,9 @@ struct ReusableProfileView: View {
     var body: some View {
         NavigationStack {
             ScrollView(.vertical, showsIndicators: false) {
-                LazyVStack(alignment: .leading, spacing: 15) {
+                LazyVStack(alignment: .center, spacing: 15) {
                     profileHeader
-                    followersFollowingSection
-                    Text("Wines Collected: ").fontWeight(.semibold) + Text("\(user.wineCount)")
+                    userStatsSection
                     memoriesSection
                     wineCollectionSection
                 }
@@ -40,17 +39,11 @@ struct ReusableProfileView: View {
 
 extension ReusableProfileView {
     private var profileHeader: some View {
-        HStack(spacing: 15) {
+        VStack(spacing: 15) {
             profileImage
-            VStack(alignment: .leading, spacing: 5) {
-                Text(user.name)
-                    .font(.title)
-                    .fontWeight(.semibold)
-                
-                Text("@\(user.username)")
-                    .font(.subheadline)
-                    .fontWeight(.light)
-            }
+            Text(user.name)
+                .font(.title)
+                .fontWeight(.semibold)
         }
     }
     
@@ -64,18 +57,45 @@ extension ReusableProfileView {
                 }
             }
         }
-        .frame(width: 75, height: 75)
+        .frame(width: 100, height: 100)
         .clipShape(Circle())
         .background(Circle().stroke(Color.gray, lineWidth: 2))
     }
     
-    private var followersFollowingSection: some View {
+    private var userStatsSection: some View {
         HStack(spacing: 25) {
             NavigationLink(destination: FollowersFollowingView(user: user, selectionIndex: 0)) {
-                Text("\(user.followers)").fontWeight(.semibold).foregroundColor(.black) + Text(" Followers").foregroundStyle(.gray)
+                VStack() {
+                    Text("\(user.followers)")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.black)
+                    Text("Followers")
+                        .font(.caption)
+                        .foregroundStyle(.gray)
+                }
             }
+            Divider()
             NavigationLink(destination: FollowersFollowingView(user: user, selectionIndex: 1)) {
-                Text("\(user.following)").fontWeight(.semibold).foregroundColor(.black) + Text(" Following").foregroundStyle(.gray)
+                VStack() {
+                    Text("\(user.following)")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.black)
+                    Text("Following")
+                        .font(.caption)
+                        .foregroundStyle(.gray)
+                }
+            }
+            Divider()
+            VStack() {
+                Text("\(user.wineCount)")
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.black)
+                Text("Wines Collected")
+                    .font(.caption)
+                    .foregroundStyle(.gray)
             }
             if forCurrentUser == false {
                 followButton
@@ -105,38 +125,35 @@ extension ReusableProfileView {
             if isLoadingMemories {
                 ProgressView()
             } else {
-                if memoryViewModel.memories.count <= 1 {
-                    Text("Memories")
-                        .font(.title)
-                        .fontWeight(.semibold)
-                    Divider()
-                    MemoriesList(hasMultipleMemories: false)
-                } else {
-                    Divider()
-                    NavigationLink(destination: NavigationStack { MemoriesList(hasMultipleMemories: true) }.navigationTitle("Memories")) {
-                        VStack(spacing: 15) {
-                            // Label
-                            HStack() {
-                                Text("Memories")
-                                    .font(.system(size: 20, weight: .bold))
-                                Spacer()
-                                Image(systemName: "chevron.right")
-                            }
-                            HStack() {
-                                memoryImage(url: memoryViewModel.memories[0].images[0])
-                                memoryImage(url: memoryViewModel.memories[1].images[0], overlayText: "+\(memoryViewModel.memories.count - 1)")
-                            }
-                            .frame(height: 200)
+                Divider()
+                NavigationLink(destination: NavigationStack { MemoriesList() }.navigationTitle("Memories")) {
+                    VStack(spacing: 15) {
+                        // Label
+                        HStack() {
+                            Text("Memories")
+                                .font(.system(size: 20, weight: .bold))
+                            Spacer()
+                            Image(systemName: "chevron.right")
                         }
-                        .padding()
-                        .background(
-                            RoundedRectangle(cornerRadius: 15)
-                                .fill(.white)
-                                .shadow(color: Color.black.opacity(0.2), radius: 3, x: 0, y: 2)
-                        )
+                        if !memoryViewModel.memories.isEmpty {
+                            Text("\(memoryViewModel.memories.count) Memories Posted")
+                                .font(.callout)
+                                .foregroundColor(.gray)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        } else {
+                            Text("No Memories Posted")
+                                .font(.callout)
+                                .foregroundColor(.gray)
+                        }
                     }
-                    .tint(.black)
+                    .padding()
+                    .background(
+                        RoundedRectangle(cornerRadius: 15)
+                            .fill(.white)
+                            .shadow(color: Color.black.opacity(0.2), radius: 3, x: 0, y: 2)
+                    )
                 }
+                .tint(.black)
             }
         }
     }
@@ -163,44 +180,43 @@ extension ReusableProfileView {
             if isLoadingCollection {
                 ProgressView()
             } else {
-                if wineViewModel.wineCollection.count <= 1 {
-                    Text("Wine Collection")
-                        .font(.title)
-                        .fontWeight(.semibold)
-                    Divider()
-                    CollectionList(hasMultipleBottles: false)
-                } else {
-                    NavigationLink(destination: NavigationStack { CollectionList(hasMultipleBottles: true) }.navigationTitle("Wine Collection"))
-                    {
-                        VStack(spacing: 15) {
-                            // Label
-                            HStack() {
-                                Text("Wine Collection")
-                                    .font(.system(size: 20, weight: .bold))
-                                Spacer()
-                                Image(systemName: "chevron.right")
-                            }
+                NavigationLink(destination: NavigationStack { CollectionList() }.navigationTitle("Wine Collection")) {
+                    VStack(spacing: 15) {
+                        // Label
+                        HStack() {
+                            Text("Wine Collection")
+                                .font(.system(size: 20, weight: .bold))
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                        }
+                        if !wineViewModel.wineCollection.isEmpty {
                             HStack(spacing: 10) {
                                 wineCard(bottle: wineViewModel.wineCollection[0])
-                                wineCard(bottle: wineViewModel.wineCollection[1], overlayText: "+\(wineViewModel.wineCollection.count - 1)")
+                                if wineViewModel.wineCollection.count > 1 {
+                                    wineCard(bottle: wineViewModel.wineCollection[1], overlayText: "+\(wineViewModel.wineCollection.count - 1)")
+                                }
                             }
+                        } else {
+                            Text("No Wines Collected")
+                                .font(.callout)
+                                .foregroundColor(.gray)
                         }
-                        .padding()
-                        .background(
-                            RoundedRectangle(cornerRadius: 15)
-                                .fill(.white)
-                                .shadow(color: Color.black.opacity(0.2), radius: 3, x: 0, y: 2)
-                        )
                     }
-                    .tint(.black)
+                    .padding()
+                    .background(
+                        RoundedRectangle(cornerRadius: 15)
+                            .fill(.white)
+                            .shadow(color: Color.black.opacity(0.2), radius: 3, x: 0, y: 2)
+                    )
                 }
+                .tint(.black)
             }
         }
     }
     
     private func wineCard(bottle: WineBottle, overlayText: String? = nil) -> some View {
         NavigationLink(destination: BottleDetailView(userID: user.uid, wineBottle: bottle)) {
-            WineCard(bottle: .collection(bottle), isVertical: true, verticalCardWidth: 150, verticalImageHeight: 150)
+            WineCard(bottle: .collection(bottle), isVertical: true, verticalCardWidth: 150, verticalCardHeight: 200, verticalImageHeight: 150, includeText: false)
         }
         .overlay() {
             if let overlayText = overlayText {
@@ -237,13 +253,16 @@ extension ReusableProfileView {
 
 extension ReusableProfileView {
     @ViewBuilder
-    func MemoriesList(hasMultipleMemories: Bool) -> some View {
+    func MemoriesList() -> some View {
         ScrollView(.vertical, showsIndicators: false) {
-            LazyVStack(alignment: .center, spacing: 15) {
-                if memoryViewModel.memories.isEmpty {
-                    Text("No Memories Found")
-                        .foregroundColor(.gray)
-                } else {
+            if memoryViewModel.memories.isEmpty {
+                Text("No Memories Posted")
+                    .font(.callout)
+                    .foregroundColor(.gray)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .padding()
+            } else {
+                LazyVStack(alignment: .center, spacing: 15) {
                     ForEach(memoryViewModel.memories, id: \.id) { memory in
                         if let id = memory.id {
                             MemoryCard(memory: memory, forCurrentUser: forCurrentUser!) { updatedMemory in
@@ -256,7 +275,7 @@ extension ReusableProfileView {
                                 // Probably not live updating because the array is in the view model
                             }
                             .padding(5)
-                            .padding(.horizontal, hasMultipleMemories ? 15 : 0)
+                            .padding(.horizontal)
                             .id(id)
                             .onAppear {
                                 if memory == memoryViewModel.memories.last && !isFetchingMore {
@@ -265,11 +284,12 @@ extension ReusableProfileView {
                             }
                         }
                     }
-                }
-                
-                if isFetchingMore {
-                    ProgressView()
-                        .padding(.top, 20)
+                    
+                    
+                    if isFetchingMore {
+                        ProgressView()
+                            .padding(.top, 20)
+                    }
                 }
             }
         }
@@ -293,13 +313,16 @@ extension ReusableProfileView {
 
 extension ReusableProfileView {
     @ViewBuilder
-    func CollectionList(hasMultipleBottles: Bool) -> some View {
+    func CollectionList() -> some View {
         ScrollView(.vertical, showsIndicators: false) {
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 175))], spacing: 10) { // [GridItem(.flexible()), GridItem(.flexible())]
-                if wineViewModel.filteredWineCollection.isEmpty {
-                    Text("Collection is Empty")
-                        .foregroundColor(.gray)
-                } else {
+            if wineViewModel.filteredWineCollection.isEmpty {
+                Text("Collection is Empty")
+                    .font(.callout)
+                    .foregroundColor(.gray)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .padding()
+            } else {
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 175))], spacing: 10) { // [GridItem(.flexible()), GridItem(.flexible())]
                     ForEach(wineViewModel.filteredWineCollection.indices, id: \.self) { index in
                         NavigationLink(destination: BottleDetailView(userID: user.uid, wineBottle: wineViewModel.filteredWineCollection[index])) {
                             WineCard(bottle: .collection(wineViewModel.filteredWineCollection[index]), isVertical: true)
@@ -308,8 +331,9 @@ extension ReusableProfileView {
                         }
                         .buttonStyle(.plain)
                     }
-                }
-            }.padding()
+                    
+                }.padding()
+            }
         }
     }
 }

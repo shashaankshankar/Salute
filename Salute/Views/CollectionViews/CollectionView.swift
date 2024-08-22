@@ -13,7 +13,7 @@ struct CollectionView: View {
     @State private var isListView: Bool = false
     @EnvironmentObject private var authModel: AuthViewModel
     @ObservedObject private var wineViewModel = WineBottleViewModel()
-    @ObservedObject private var wineAPI = WineAPIViewModel()
+    @ObservedObject private var wineAPI = WineAPIViewModel() 
     
     var body: some View {
         NavigationStack {
@@ -68,11 +68,15 @@ struct CollectionView: View {
         ScrollView(.vertical, showsIndicators: false) {
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 175))], spacing: 10) { // [GridItem(.flexible()), GridItem(.flexible())]
                 ForEach(wineViewModel.filteredWineCollection.indices, id: \.self) { index in
+                    let wineBottle = wineViewModel.filteredWineCollection[index]
                     if let userID = authModel.currentUser?.uid {
-                        NavigationLink(destination: BottleDetailView(userID: userID, wineBottle: wineViewModel.filteredWineCollection[index])) {
-                            WineCard(bottle: .collection(wineViewModel.filteredWineCollection[index]), isVertical: true)
+                        NavigationLink(destination: 
+                            BottleDetailView(userID: userID, wineBottle: wineBottle)
+//                            .navigationTransitionStyle(.zoom(sourceID: wineBottle.id, in: wineViewModel.filteredWineCollection))
+                        ) {
+                            WineCard(bottle: .collection(wineBottle), isVertical: true)
                                 .padding(.horizontal)
-                                .padding(.vertical, 5)
+                                .padding(.vertical, 5)                                
                         }
                         .buttonStyle(.plain)
                         .contextMenu { // Add context menu to each NavigationLink
@@ -80,6 +84,7 @@ struct CollectionView: View {
                                 wineViewModel.delete(at: IndexSet(integer: index))
                             }
                         }
+//                        .matchedTransitionSource(id: wineBottle.id, in: wineViewModel.filteredWineCollection)
                     }
                 }
             }.padding()

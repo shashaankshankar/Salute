@@ -29,6 +29,7 @@ struct ProfileView: View {
                 }
             }
             .navigationTitle(userProfile == nil ? "Profile" : "")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 if (userProfile == nil) {
                     ToolbarItem(placement: .navigationBarTrailing) {
@@ -40,8 +41,8 @@ struct ProfileView: View {
                                 
                             }
                         } label: {
-                            Image(systemName: "ellipsis")
-                                .rotationEffect(.degrees(90))
+                            Image(systemName: "gear")
+//                                .rotationEffect(.degrees(90))
                                 .tint(.black)
                         }
                     }
