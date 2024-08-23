@@ -168,6 +168,7 @@ extension CreateMemoryView {
         .font(.system(size: 20, weight: .semibold))
         .foregroundColor(.white)
         .background(Color.blue, in: RoundedRectangle(cornerRadius: 10))
+        .frame(maxWidth: .infinity, alignment: .center)
         .disableWithOpacity(images.isEmpty || selectedWineBottles.isEmpty)
     }
 }

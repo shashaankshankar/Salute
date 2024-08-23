@@ -146,7 +146,7 @@ extension BottleDetailView {
     }
     
     private var tastingNotes: some View {
-        VStack(alignment: .leading, spacing: 5) {
+        VStack(alignment: .leading, spacing: 15) {
             Text("Tasting Notes")
                 .font(.system(size: 20, weight: .medium))
             
@@ -165,42 +165,40 @@ extension BottleDetailView {
     }
     
     private var memoriesSection: some View {
-        VStack(alignment: .leading, spacing: 5) {
+        VStack(alignment: .leading, spacing: 15) {
             if isLoadingMemories {
                 ProgressView()
             } else {
-                if memoryViewModel.memories.count <= 1 {
-                    Text("Memories")
-                        .font(.system(size: 20, weight: .medium))
-                    Divider()
-                    MemoriesList(hasMultipleMemories: false)
-                } else {
-                    Divider()
-                    NavigationLink(destination: NavigationStack { MemoriesList(hasMultipleMemories: true) }.navigationTitle("Memories")) {
-                        VStack(spacing: 15) {
-                            // Label
-                            HStack() {
-                                Text("Memories")
-                                    .font(.system(size: 20, weight: .medium))
-                                Spacer()
-                                Image(systemName: "chevron.right")
-                            }
-                            HStack() {
-                                memoryImage(url: memoryViewModel.memories[0].images[0])
-                                memoryImage(url: memoryViewModel.memories[1].images[0], overlayText: "+\(memoryViewModel.memories.count - 1)")
-                            }
-                            .frame(height: 200)
+                Divider()
+                NavigationLink(destination: NavigationStack { MemoriesList() }.navigationTitle("Memories")) {
+                    VStack(spacing: 15) {
+                        // Label
+                        HStack() {
+                            Text("Memories")
+                                .font(.system(size: 20, weight: .bold))
+                            Spacer()
+                            Image(systemName: "chevron.right")
                         }
-                        .padding()
-                        .background(
-                            RoundedRectangle(cornerRadius: 15)
-                                .fill(.white)
-                                .shadow(color: Color.black.opacity(0.2), radius: 3, x: 0, y: 2)
-                        )
+                        if !memoryViewModel.memories.isEmpty {
+                            Text("\(memoryViewModel.memories.count) Memories Posted")
+                                .font(.callout)
+                                .foregroundColor(.gray)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        } else {
+                            Text("No Memories Posted")
+                                .font(.callout)
+                                .foregroundColor(.gray)
+                        }
                     }
-                    .tint(.black)
+                    .padding()
+                    .background(
+                        RoundedRectangle(cornerRadius: 15)
+                            .fill(.white)
+                            .shadow(color: Color.black.opacity(0.2), radius: 3, x: 0, y: 2)
+                    )
                 }
-            }
+                .tint(.black)
+            }            
         }
         .padding(.horizontal)
     }
@@ -275,12 +273,15 @@ extension BottleDetailView {
 
 extension BottleDetailView {
     @ViewBuilder
-    func MemoriesList(hasMultipleMemories: Bool) -> some View {
+    func MemoriesList() -> some View {
         ScrollView(.vertical, showsIndicators: false) {
             LazyVStack(alignment: .center, spacing: 15) {
                 if memoryViewModel.memories.isEmpty {
-                    Text("No Memories Found")
+                    Text("No Memories Posted")
+                        .font(.callout)
                         .foregroundColor(.gray)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding()
                 } else {
                     ForEach(memoryViewModel.memories, id: \.id) { memory in
                         if let id = memory.id {
@@ -295,7 +296,8 @@ extension BottleDetailView {
                                 // Probably not live updating because the array is in the view model
                             }
                             .padding(5)
-                            .padding(.horizontal, hasMultipleMemories ? 15 : 0)                            
+//                            .padding(.horizontal, hasMultipleMemories ? 15 : 0) 
+                            .padding(.horizontal)
                             .id(id)
                         }
                     }

@@ -17,7 +17,16 @@ struct CollectionView: View {
     
     var body: some View {
         NavigationStack {
-            GridView()
+            ScrollView(.vertical, showsIndicators: false) {
+                if wineViewModel.wineCollection.isEmpty {
+                    Text("No Wines Collected")
+                        .font(.callout)
+                        .foregroundColor(.gray)
+                        .padding()
+                } else {
+                    GridView()
+                }
+            }
             .refreshable {
                 wineViewModel.fetch()
             }
@@ -65,30 +74,28 @@ struct CollectionView: View {
     
     @ViewBuilder
     func GridView() -> some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 175))], spacing: 10) { // [GridItem(.flexible()), GridItem(.flexible())]
-                ForEach(wineViewModel.filteredWineCollection.indices, id: \.self) { index in
-                    let wineBottle = wineViewModel.filteredWineCollection[index]
-                    if let userID = authModel.currentUser?.uid {
-                        NavigationLink(destination: 
-                            BottleDetailView(userID: userID, wineBottle: wineBottle)
+        LazyVGrid(columns: [GridItem(.adaptive(minimum: 175))], spacing: 10) { // [GridItem(.flexible()), GridItem(.flexible())]
+            ForEach(wineViewModel.filteredWineCollection.indices, id: \.self) { index in
+                let wineBottle = wineViewModel.filteredWineCollection[index]
+                if let userID = authModel.currentUser?.uid {
+                    NavigationLink(destination:
+                        BottleDetailView(userID: userID, wineBottle: wineBottle)
 //                            .navigationTransitionStyle(.zoom(sourceID: wineBottle.id, in: wineViewModel.filteredWineCollection))
-                        ) {
-                            WineCard(bottle: .collection(wineBottle), isVertical: true)
-                                .padding(.horizontal)
-                                .padding(.vertical, 5)                                
-                        }
-                        .buttonStyle(.plain)
-                        .contextMenu { // Add context menu to each NavigationLink
-                            Button("Delete", role: .destructive) {
-                                wineViewModel.delete(at: IndexSet(integer: index))
-                            }
-                        }
-//                        .matchedTransitionSource(id: wineBottle.id, in: wineViewModel.filteredWineCollection)
+                    ) {
+                        WineCard(bottle: .collection(wineBottle), isVertical: true)
+                            .padding(.horizontal)
+                            .padding(.vertical, 5)
                     }
+                    .buttonStyle(.plain)
+                    .contextMenu { // Add context menu to each NavigationLink
+                        Button("Delete", role: .destructive) {
+                            wineViewModel.delete(at: IndexSet(integer: index))
+                        }
+                    }
+//                        .matchedTransitionSource(id: wineBottle.id, in: wineViewModel.filteredWineCollection)
                 }
-            }.padding()
-        }
+            }
+        }.padding()
     }
 }
 

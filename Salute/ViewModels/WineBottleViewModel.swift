@@ -115,6 +115,7 @@ class WineBottleViewModel: ObservableObject {
             dispatchGroup.enter()
             genAIViewModel.generateWineAPITastingNotes(for: wine, wineType: wineType) { tastingNotes, error in
                 if let tastingNotes = tastingNotes {
+                    print("tasting Notes:", tastingNotes)
                     wineData["tastingNotes"] = tastingNotes
                 } else {
                     print("Error generating tasting notes: \(error?.localizedDescription ?? "Unknown error")")

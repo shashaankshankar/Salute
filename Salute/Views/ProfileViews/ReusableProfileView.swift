@@ -23,6 +23,9 @@ struct ReusableProfileView: View {
                 LazyVStack(alignment: .center, spacing: 15) {
                     profileHeader
                     userStatsSection
+                    if forCurrentUser == false {
+                        followButton
+                    }
                     memoriesSection
                     wineCollectionSection
                 }
@@ -96,9 +99,6 @@ extension ReusableProfileView {
                 Text("Wines Collected")
                     .font(.caption)
                     .foregroundStyle(.gray)
-            }
-            if forCurrentUser == false {
-                followButton
             }
         }
     }

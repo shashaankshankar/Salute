@@ -14,7 +14,11 @@ struct ExploreView: View {
         NavigationStack {
             List {
                 if authModel.filteredUsers.isEmpty {
-                    ProgressView()
+                    Text("No Users Available")
+                        .font(.callout)
+                        .foregroundColor(.gray)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding()
                 } else {
                     ForEach(authModel.filteredUsers) { user in
                         NavigationLink(destination: ProfileView(userProfile: user)) {
