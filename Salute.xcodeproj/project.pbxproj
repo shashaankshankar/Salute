@@ -174,14 +174,6 @@
 			path = MemoryViews;
 			sourceTree = "<group>";
 		};
-		FB9EF1F02C87D65C0089EA30 /* Media Assets */ = {
-			isa = PBXGroup;
-			children = (
-				FB9EF1FB2C87D6D40089EA30 /* Mockups */,
-			);
-			path = "Media Assets";
-			sourceTree = "<group>";
-		};
 		FB9EF1FB2C87D6D40089EA30 /* Mockups */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +184,14 @@
 				FB9EF1F12C87D6CA0089EA30 /* Mockup 5.png */,
 			);
 			path = Mockups;
+			sourceTree = "<group>";
+		};
+		FB9EF1FC2C87D76C0089EA30 /* MediaAssets */ = {
+			isa = PBXGroup;
+			children = (
+				FB9EF1FB2C87D6D40089EA30 /* Mockups */,
+			);
+			path = MediaAssets;
 			sourceTree = "<group>";
 		};
 		FBAC28BB2C0E76EE005C0BA5 /* Models */ = {
@@ -267,7 +267,7 @@
 				FBAC28BB2C0E76EE005C0BA5 /* Models */,
 				FBAF16722BFD45BF00E113AC /* SaluteApp.swift */,
 				FBAF16762BFD45C000E113AC /* Assets.xcassets */,
-				FB9EF1F02C87D65C0089EA30 /* Media Assets */,
+				FB9EF1FC2C87D76C0089EA30 /* MediaAssets */,
 				FBAC28BE2C10D426005C0BA5 /* GoogleService-Info.plist */,
 				FBA10BF82C4024500048B6D9 /* GenerativeAI-Info.plist */,
 				FBAF16782BFD45C000E113AC /* Preview Content */,
