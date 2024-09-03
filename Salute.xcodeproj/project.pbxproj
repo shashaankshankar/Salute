@@ -164,6 +164,13 @@
 			path = MemoryViews;
 			sourceTree = "<group>";
 		};
+		FB9EF1F02C87D65C0089EA30 /* Media Assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Media Assets";
+			sourceTree = "<group>";
+		};
 		FBAC28BB2C0E76EE005C0BA5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -217,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				FBAF16712BFD45BF00E113AC /* Salute */,
+				FB9EF1F02C87D65C0089EA30 /* Media Assets */,
 				FBAF16702BFD45BF00E113AC /* Products */,
 			);
 			sourceTree = "<group>";
