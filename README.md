@@ -1,6 +1,12 @@
 # Salute 🍷
 
-![Salute Mockup](link-to-your-main-mockup-image.png)
+<div style="display: flex; justify-content: space-around;">
+    <img src="Salute/MediaAssets/Mockups/Mockup1.png" alt="Salute Mockup 1" width="195"/>
+    <img src="Salute/MediaAssets/Mockups/Mockup2.png" alt="Salute Mockup 2" width="195"/>
+    <img src="Salute/MediaAssets/Mockups/Mockup3.png" alt="Salute Mockup 3" width="195"/>
+    <img src="Salute/MediaAssets/Mockups/Mockup4.png" alt="Salute Mockup 4" width="195"/>
+    <img src="Salute/MediaAssets/Mockups/Mockup5.png" alt="Salute Mockup 5" width="195"/>
+</div>
 
 **Salute** is a modern iOS app designed for wine enthusiasts to explore, collect, and share their wine experiences. It combines the functionalities of a wine collection management tool and a social media platform, allowing users to connect, share memories, and discover new wines through a vibrant community.
 
