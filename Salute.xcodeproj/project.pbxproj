@@ -247,7 +247,6 @@
 			isa = PBXGroup;
 			children = (
 				FBAF16712BFD45BF00E113AC /* Salute */,
-				FB9EF1F02C87D65C0089EA30 /* Media Assets */,
 				FBAF16702BFD45BF00E113AC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -268,6 +267,7 @@
 				FBAC28BB2C0E76EE005C0BA5 /* Models */,
 				FBAF16722BFD45BF00E113AC /* SaluteApp.swift */,
 				FBAF16762BFD45C000E113AC /* Assets.xcassets */,
+				FB9EF1F02C87D65C0089EA30 /* Media Assets */,
 				FBAC28BE2C10D426005C0BA5 /* GoogleService-Info.plist */,
 				FBA10BF82C4024500048B6D9 /* GenerativeAI-Info.plist */,
 				FBAF16782BFD45C000E113AC /* Preview Content */,
