@@ -25,6 +25,11 @@
 		FB8E8A502C59945F0096F4FA /* ProfileCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E8A4F2C59945F0096F4FA /* ProfileCard.swift */; };
 		FB8E8A552C5F23A40096F4FA /* FollowersFollowingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E8A542C5F23A40096F4FA /* FollowersFollowingView.swift */; };
 		FB8E8A5A2C5F379B0096F4FA /* SlidingTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E8A592C5F379B0096F4FA /* SlidingTabView.swift */; };
+		FB9EF1F62C87D6CA0089EA30 /* Mockup 5.png in Resources */ = {isa = PBXBuildFile; fileRef = FB9EF1F12C87D6CA0089EA30 /* Mockup 5.png */; };
+		FB9EF1F72C87D6CA0089EA30 /* Mockup 4.png in Resources */ = {isa = PBXBuildFile; fileRef = FB9EF1F22C87D6CA0089EA30 /* Mockup 4.png */; };
+		FB9EF1F82C87D6CA0089EA30 /* Mockup 1.png in Resources */ = {isa = PBXBuildFile; fileRef = FB9EF1F32C87D6CA0089EA30 /* Mockup 1.png */; };
+		FB9EF1F92C87D6CA0089EA30 /* Mockup 3.png in Resources */ = {isa = PBXBuildFile; fileRef = FB9EF1F42C87D6CA0089EA30 /* Mockup 3.png */; };
+		FB9EF1FA2C87D6CA0089EA30 /* Mockup 2.png in Resources */ = {isa = PBXBuildFile; fileRef = FB9EF1F52C87D6CA0089EA30 /* Mockup 2.png */; };
 		FBA10BE92C3C551B0048B6D9 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA10BE82C3C551B0048B6D9 /* MapView.swift */; };
 		FBA10BEB2C3C55B20048B6D9 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA10BEA2C3C55B20048B6D9 /* MapViewModel.swift */; };
 		FBA10BEE2C3F246F0048B6D9 /* OpenAISwift in Frameworks */ = {isa = PBXBuildFile; productRef = FBA10BED2C3F246F0048B6D9 /* OpenAISwift */; };
@@ -75,6 +80,11 @@
 		FB8E8A4F2C59945F0096F4FA /* ProfileCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCard.swift; sourceTree = "<group>"; };
 		FB8E8A542C5F23A40096F4FA /* FollowersFollowingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersFollowingView.swift; sourceTree = "<group>"; };
 		FB8E8A592C5F379B0096F4FA /* SlidingTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingTabView.swift; sourceTree = "<group>"; };
+		FB9EF1F12C87D6CA0089EA30 /* Mockup 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mockup 5.png"; sourceTree = "<group>"; };
+		FB9EF1F22C87D6CA0089EA30 /* Mockup 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mockup 4.png"; sourceTree = "<group>"; };
+		FB9EF1F32C87D6CA0089EA30 /* Mockup 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mockup 1.png"; sourceTree = "<group>"; };
+		FB9EF1F42C87D6CA0089EA30 /* Mockup 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mockup 3.png"; sourceTree = "<group>"; };
+		FB9EF1F52C87D6CA0089EA30 /* Mockup 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mockup 2.png"; sourceTree = "<group>"; };
 		FBA10BE82C3C551B0048B6D9 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		FBA10BEA2C3C55B20048B6D9 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		FBA10BF82C4024500048B6D9 /* GenerativeAI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GenerativeAI-Info.plist"; sourceTree = "<group>"; };
@@ -167,8 +177,21 @@
 		FB9EF1F02C87D65C0089EA30 /* Media Assets */ = {
 			isa = PBXGroup;
 			children = (
+				FB9EF1FB2C87D6D40089EA30 /* Mockups */,
 			);
 			path = "Media Assets";
+			sourceTree = "<group>";
+		};
+		FB9EF1FB2C87D6D40089EA30 /* Mockups */ = {
+			isa = PBXGroup;
+			children = (
+				FB9EF1F32C87D6CA0089EA30 /* Mockup 1.png */,
+				FB9EF1F52C87D6CA0089EA30 /* Mockup 2.png */,
+				FB9EF1F42C87D6CA0089EA30 /* Mockup 3.png */,
+				FB9EF1F22C87D6CA0089EA30 /* Mockup 4.png */,
+				FB9EF1F12C87D6CA0089EA30 /* Mockup 5.png */,
+			);
+			path = Mockups;
 			sourceTree = "<group>";
 		};
 		FBAC28BB2C0E76EE005C0BA5 /* Models */ = {
@@ -335,9 +358,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB9EF1F62C87D6CA0089EA30 /* Mockup 5.png in Resources */,
+				FB9EF1F92C87D6CA0089EA30 /* Mockup 3.png in Resources */,
 				FBAF167A2BFD45C000E113AC /* Preview Assets.xcassets in Resources */,
+				FB9EF1F82C87D6CA0089EA30 /* Mockup 1.png in Resources */,
 				FBAF16772BFD45C000E113AC /* Assets.xcassets in Resources */,
 				FBA10BF92C4024500048B6D9 /* GenerativeAI-Info.plist in Resources */,
+				FB9EF1F72C87D6CA0089EA30 /* Mockup 4.png in Resources */,
+				FB9EF1FA2C87D6CA0089EA30 /* Mockup 2.png in Resources */,
 				FBAC28BF2C10D426005C0BA5 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
