@@ -38,7 +38,6 @@
 		FBA10BFB2C4024B20048B6D9 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA10BFA2C4024B20048B6D9 /* APIKey.swift */; };
 		FBA10BFD2C4026C40048B6D9 /* GenerativeAIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA10BFC2C4026C40048B6D9 /* GenerativeAIViewModel.swift */; };
 		FBA10C002C448EFF0048B6D9 /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = FBA10BFF2C448EFF0048B6D9 /* SwiftUIIntrospect */; };
-		FBAC28BF2C10D426005C0BA5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FBAC28BE2C10D426005C0BA5 /* GoogleService-Info.plist */; };
 		FBAC28C22C10D4C7005C0BA5 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = FBAC28C12C10D4C7005C0BA5 /* FirebaseAnalytics */; };
 		FBAC28C42C10D4C7005C0BA5 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FBAC28C32C10D4C7005C0BA5 /* FirebaseAuth */; };
 		FBAC28C62C10D4C7005C0BA5 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = FBAC28C52C10D4C7005C0BA5 /* FirebaseFirestore */; };
@@ -58,6 +57,7 @@
 		FBAF16732BFD45BF00E113AC /* SaluteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAF16722BFD45BF00E113AC /* SaluteApp.swift */; };
 		FBAF16772BFD45C000E113AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBAF16762BFD45C000E113AC /* Assets.xcassets */; };
 		FBAF167A2BFD45C000E113AC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBAF16792BFD45C000E113AC /* Preview Assets.xcassets */; };
+		FBB8A6B42DDC0D350088BF35 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FBB8A6B32DDC0D350088BF35 /* GoogleService-Info.plist */; };
 		FBD074222C647B9A0040FCD9 /* StarRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD074212C647B9A0040FCD9 /* StarRating.swift */; };
 /* End PBXBuildFile section */
 
@@ -90,7 +90,6 @@
 		FBA10BF82C4024500048B6D9 /* GenerativeAI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GenerativeAI-Info.plist"; sourceTree = "<group>"; };
 		FBA10BFA2C4024B20048B6D9 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		FBA10BFC2C4026C40048B6D9 /* GenerativeAIViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerativeAIViewModel.swift; sourceTree = "<group>"; };
-		FBAC28BE2C10D426005C0BA5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FBAC28CB2C10D7E8005C0BA5 /* WineBottle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WineBottle.swift; sourceTree = "<group>"; };
 		FBAC28CD2C10DBEA005C0BA5 /* WineBottleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WineBottleViewModel.swift; sourceTree = "<group>"; };
 		FBAC28CF2C10E2E0005C0BA5 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
@@ -106,6 +105,7 @@
 		FBAF16722BFD45BF00E113AC /* SaluteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaluteApp.swift; sourceTree = "<group>"; };
 		FBAF16762BFD45C000E113AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FBAF16792BFD45C000E113AC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FBB8A6B32DDC0D350088BF35 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FBD074212C647B9A0040FCD9 /* StarRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRating.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -268,8 +268,8 @@
 				FBAF16722BFD45BF00E113AC /* SaluteApp.swift */,
 				FBAF16762BFD45C000E113AC /* Assets.xcassets */,
 				FB9EF1FC2C87D76C0089EA30 /* MediaAssets */,
-				FBAC28BE2C10D426005C0BA5 /* GoogleService-Info.plist */,
 				FBA10BF82C4024500048B6D9 /* GenerativeAI-Info.plist */,
+				FBB8A6B32DDC0D350088BF35 /* GoogleService-Info.plist */,
 				FBAF16782BFD45C000E113AC /* Preview Content */,
 			);
 			path = Salute;
@@ -321,7 +321,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1530;
-				LastUpgradeCheck = 1530;
+				LastUpgradeCheck = 1630;
 				TargetAttributes = {
 					FBAF166E2BFD45BF00E113AC = {
 						CreatedOnToolsVersion = 15.3;
@@ -360,12 +360,12 @@
 			files = (
 				FB9EF2042C87D8600089EA30 /* Mockup2.png in Resources */,
 				FB9EF2052C87D8600089EA30 /* Mockup4.png in Resources */,
+				FBB8A6B42DDC0D350088BF35 /* GoogleService-Info.plist in Resources */,
 				FBAF167A2BFD45C000E113AC /* Preview Assets.xcassets in Resources */,
 				FBAF16772BFD45C000E113AC /* Assets.xcassets in Resources */,
 				FB9EF2032C87D8600089EA30 /* Mockup3.png in Resources */,
 				FBA10BF92C4024500048B6D9 /* GenerativeAI-Info.plist in Resources */,
 				FB9EF2022C87D8600089EA30 /* Mockup1.png in Resources */,
-				FBAC28BF2C10D426005C0BA5 /* GoogleService-Info.plist in Resources */,
 				FB9EF2062C87D8600089EA30 /* Mockup5.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -453,6 +453,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 3N4S7979VV;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -516,6 +517,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 3N4S7979VV;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -545,7 +547,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Salute/Preview Content\"";
-				DEVELOPMENT_TEAM = 3N4S7979VV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -579,7 +580,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Salute/Preview Content\"";
-				DEVELOPMENT_TEAM = 3N4S7979VV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

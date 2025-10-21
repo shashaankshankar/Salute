@@ -1,0 +1,42 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run Salute in iPhone Simulator",
+      "type": "shell",
+      "command": "${workspaceFolder}/Salute/scripts/run_simulator.sh",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Terminate Salute on Simulator",
+      "type": "shell",
+      "command": "${workspaceFolder}/Salute/scripts/terminate_simulator.sh",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run Salute on Device",
+      "type": "shell",
+      "command": "${workspaceFolder}/Salute/scripts/run_device.sh",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}

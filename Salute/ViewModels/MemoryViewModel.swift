@@ -9,6 +9,7 @@ import Foundation
 import FirebaseFirestore
 import FirebaseStorage
 
+@MainActor
 class MemoryViewModel: ObservableObject {
     @Published var memories: [Memory] = []
     @Published var wineBottleViewModel: WineBottleViewModel = WineBottleViewModel()
