@@ -6,21 +6,27 @@
 //
 
 import Foundation
-import GoogleGenerativeAI
+//import GoogleGenerativeAI
+import FirebaseAI
 
 class GenerativeAIViewModel: ObservableObject {
     // Access your API key from your on-demand resource .plist file (see "Set up your API key" above)
-    let model = GenerativeModel(
-        name: "gemini-1.5-flash", // "gemini-1.0-pro" "gemini-1.5-flash"
-        apiKey: APIKey.default,
-        generationConfig: GenerationConfig(
+    let ai : FirebaseAI
+    let config : GenerationConfig
+    let systemPrompt : ModelContent
+    let model : GenerativeModel
+    
+    init() {
+        self.ai = FirebaseAI.firebaseAI(backend: .googleAI())
+        self.config = GenerationConfig(
             temperature: 0.9,
             topP: 1,
             topK: 0,
             maxOutputTokens: 8192,
             responseMIMEType: "text/plain"
-        ),
-        systemInstruction: // •
+        )
+        self.systemPrompt = ModelContent(
+            role:
             """
             You are a knowledgeable and helpful wine expert providing information for a mobile wine application. Your task is to generate concise, informative, and engaging content about wines, including descriptions, tasting notes, food pairings, and other relevant details.
 
@@ -38,10 +44,18 @@ class GenerativeAIViewModel: ObservableObject {
 
             Please ensure that your responses are easily scannable and understandable for users on mobile devices.
             """
-    )
+        )
+
+        self.model = self.ai.generativeModel(
+            modelName: "gemini-2.5-flash-lite",
+            generationConfig: self.config,
+            systemInstruction: self.systemPrompt
+        )
+    }
     
     func generateWineAPIDescription(for wine: WineAPI, completion: @escaping (String?, Error?) -> Void) {
         let prompt = "Generate a small 1-3 sentence description about the wine \(wine.wine!) from the winery \(wine.winery!) from the location \(formatWineAPILocation(location: wine.location!))."
+        print("🧠 [GenerativeAI] Starting generation for generateWineAPIDescription with prompt: \(prompt)")
                                 
         Task {
             do {
@@ -56,8 +70,10 @@ class GenerativeAIViewModel: ObservableObject {
                     description.removeLast()
                 }
                 
+                print("✅ [GenerativeAI] generateWineAPIDescription success: \(description)")
                 completion(description, nil)
             } catch {
+                print("❌ [GenerativeAI] generateWineAPIDescription failed with error: \(error.localizedDescription)")
                 print("Something went wrong!\n\(error.localizedDescription)")
                 completion(nil, error)
             }
@@ -66,6 +82,7 @@ class GenerativeAIViewModel: ObservableObject {
     
     func generateWineAPITastingNotes(for wine: WineAPI, wineType: String, completion: @escaping (String?, Error?) -> Void) {
         let prompt = "Generate detailed tasting notes for a \(wineType) wine named \(wine.wine!) produced by \(wine.winery!) in \(formatWineAPILocation(location: wine.location!)). In the first sentence, provide a captivating overview of the wine's overall character and most prominent flavor. Then, elaborate with 1 sentence describing the aroma, body, acidity, tannins (if applicable), and finish. Conclude with 1 sentence suggesting ideal food pairings to complement the wine."
+        print("🧠 [GenerativeAI] Starting generation for generateWineAPITastingNotes with prompt: \(prompt)")
                                 
         Task {
             do {
@@ -80,8 +97,10 @@ class GenerativeAIViewModel: ObservableObject {
                     tastingNotes.removeLast()
                 }
                 
+                print("✅ [GenerativeAI] generateWineAPITastingNotes success: \(tastingNotes)")
                 completion(tastingNotes, nil)
             } catch {
+                print("❌ [GenerativeAI] generateWineAPITastingNotes failed with error: \(error.localizedDescription)")
                 print("Something went wrong!\n\(error.localizedDescription)")
                 completion(nil, error)
             }
@@ -90,6 +109,7 @@ class GenerativeAIViewModel: ObservableObject {
     
     func generateWineBottleDescription(wineName: String, winery: String, location: String, completion: @escaping (String?, Error?) -> Void) {
         let prompt = "Generate a small 1-3 sentence description about the wine \(wineName) from the winery \(winery) from the location \(location)."
+        print("🧠 [GenerativeAI] Starting generation for generateWineBottleDescription with prompt: \(prompt)")
                                 
         Task {
             do {
@@ -104,8 +124,10 @@ class GenerativeAIViewModel: ObservableObject {
                     description.removeLast()
                 }
                 
+                print("✅ [GenerativeAI] generateWineBottleDescription success: \(description)")
                 completion(description, nil)
             } catch {
+                print("❌ [GenerativeAI] generateWineBottleDescription failed with error: \(error.localizedDescription)")
                 print("Something went wrong!\n\(error.localizedDescription)")
                 completion(nil, error)
             }
@@ -114,6 +136,7 @@ class GenerativeAIViewModel: ObservableObject {
     
     func generateWineBottleTastingNotes(wineName: String, winery: String, location: String, wineType: String, completion: @escaping (String?, Error?) -> Void) {
         let prompt = "Generate detailed tasting notes for a \(wineType) wine named \(wineName) produced by \(winery) in \(location). In the first sentence, provide a captivating overview of the wine's overall character and most prominent flavor. Then, elaborate with 1 sentence describing the aroma, body, acidity, tannins (if applicable), and finish. Conclude with 1 sentence suggesting ideal food pairings to complement the wine."
+        print("🧠 [GenerativeAI] Starting generation for generateWineBottleTastingNotes with prompt: \(prompt)")
                                 
         Task {
             do {
@@ -128,8 +151,10 @@ class GenerativeAIViewModel: ObservableObject {
                     tastingNotes.removeLast()
                 }
                 
+                print("✅ [GenerativeAI] generateWineBottleTastingNotes success: \(tastingNotes)")
                 completion(tastingNotes, nil)
             } catch {
+                print("❌ [GenerativeAI] generateWineBottleTastingNotes failed with error: \(error.localizedDescription)")
                 print("Something went wrong!\n\(error.localizedDescription)")
                 completion(nil, error)
             }
